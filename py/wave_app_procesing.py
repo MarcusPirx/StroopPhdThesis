@@ -255,13 +255,12 @@ class wave_app_procesing():
             else:
                 final_solution=np.concatenate((final_solution,np.repeat('NoNincluded',len(dcombined_array[dcombined_array[:,3]==bo,1]))),axis=0)
         combined_data["final_solution"]=final_solution
-
         # save file
         if save_path!=None:
-            combined_data.to_csv(save_path,sep='\t')
+            combined_data.to_csv(save_path,sep='\t',index=False)
         return combined_data
 
-    def show_reaction_time(self):
+    def show_reaction_time(self,path_save=None):
         """
         提取可以使用的数据部分，记录"show",'speech_begin','speech_end','response',
         'reaction_time','speech_during','result(correct/incorrect)'
@@ -281,11 +280,10 @@ class wave_app_procesing():
             result['reaction_time'].append(reaction_time)
             result['speech_during'].append(speech_dur)
             result['result'].append(res)
+        # save file 
+        if path_save!=None:
+            pd.DataFrame(result).to_csv(path_save,sep='\t',index=False)
         return pd.DataFrame(result)
-
-
-
-
 
 
     def plot_detected_speech_regions(self,save_path=None):

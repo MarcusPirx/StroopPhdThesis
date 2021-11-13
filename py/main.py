@@ -122,10 +122,10 @@ Sp_TEST3_Sa=Sp_TEST3+"\\"+list(filter(lambda x: '_Sa' in x, Sp_TEST3_file))[0] #
 Sp_TEST3_Sk=Sp_TEST3+"\\"+list(filter(lambda x: '_Sk' in x, Sp_TEST3_file))[0] #match Sk data file
 Sp_TEST3_SkI=Sp_TEST3+"\\"+list(filter(lambda x: '_SkI' in x, Sp_TEST3_file))[0] #match SkI data file
 Sp_TEST3_Sp=Sp_TEST3+"\\"+list(filter(lambda x: '_Sp' in x, Sp_TEST3_file))[0] #match wave data file
-# print("Read data from:")
-# print(Sp_TEST3)
-# print("Load file:")
-# print(Sp_TEST3_2D),print(Sp_TEST3_3D),print(Sp_TEST3_App),print(Sp_TEST3_Sa),print(Sp_TEST3_Sk),print(Sp_TEST3_SkI),print(Sp_TEST3_Sp)
+print("Read data from:")
+print(Sp_TEST3)
+print("Load file:")
+print(Sp_TEST3_2D),print(Sp_TEST3_3D),print(Sp_TEST3_App),print(Sp_TEST3_Sa),print(Sp_TEST3_Sk),print(Sp_TEST3_SkI),print(Sp_TEST3_Sp)
 # runtime end
 time_end=datetime.now()
 time_delta=time_end-time_start
@@ -157,19 +157,23 @@ print("Success!!!")
 # #######################################
 
 #######################################
-# test new class wave data transform
+# Speech Experiment test 3
+# import Class from local module
 from wave_app_procesing import wave_app_procesing
-exp=wave_app_procesing(Sp_TEST3_Sp,Sp_TEST3_App)
-# print(pd.DataFrame(exp.vad_time()))
-# 所有的显示回答发音起始结束和是否纳入，表格
-speech_labels=exp.show_speech_labels(save_path=Sp_TEST3_save+"\\show_speech_labels.csv")
-print(speech_labels)
+# proceding experiment
+sp3=wave_app_procesing(Sp_TEST3_Sp,Sp_TEST3_App)
+# Show all timeline and their labels , and save speech labels
+sp3_speech_labels=sp3.show_speech_labels(save_path=Sp_TEST3_save+"\\sp3_speech_labels.csv")
+# show useable blocks and reaction times and their labels
+sp3_useable_rt=sp3.show_reaction_time(path_save=Sp_TEST3_save+"\\sp3_useable_data.csv")
+# plot and save the wave and included blocks image.
+sp3.plot_detected_speech_regions(save_path=Sp_TEST3_save+"\\waveform.png")
+# show all speech labels
+print("The timeline table with all nodes (display time, time to speech, response, and identify the answer, etc.):")
+print(sp3_speech_labels)
+print("The table with useable time nodes:")
+print(sp3_useable_rt)
 # print(exp.rate)
 # print(exp.time)
 # print(exp.channels)
-# 所有的显示回答发音起始结束和结果显示成图片
-exp.plot_detected_speech_regions(save_path=Sp_TEST3_save+"\\waveform.png")
-# 可以使用的部分的反应时间，发音时间等
-print(exp.show_reaction_time())
-
 #######################################
