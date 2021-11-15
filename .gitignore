@@ -25,3 +25,4 @@ node_modules/
 *.sqlite
 *.txt
 *.wav
+*.pptx

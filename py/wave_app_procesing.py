@@ -293,7 +293,7 @@ class wave_app_procesing():
         fig=plt.figure(figsize=(20,5))
         plt.plot(self.time,data,color="#bababa") #波形图，灰色那个
         plt.vlines(timeline.loc[timeline.type=="show","time"],ymin=0,ymax=1,color="#e41a1c") # display word
-        plt.vlines(timeline.loc[timeline.type=="response","time"],ymin=-1,ymax=0,color="#377eb8") # display word
+        plt.vlines(timeline.loc[timeline.type=="response","time"],ymin=-1,ymax=0,color="#377eb8") # answer word
         plt.vlines(timeline.loc[(timeline.type=="speech_begin")&(timeline.included=='Yes'),"time"],ymin=-0.5,ymax=0.5,color="#4daf4a") # speech_begin, included
         plt.vlines(timeline.loc[(timeline.type=="speech_end")&(timeline.included=='Yes'),"time"],ymin=-0.5,ymax=0.5,color="#984ea3") # speech_end, included
         plt.vlines(timeline.loc[(timeline.type=="speech_begin")&(timeline.included=='No'),"time"],ymin=-0.5,ymax=0.5,linestyles="dotted",color="#4daf4a") # speech_begin, Not included
